@@ -1,23 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  Menu, 
-  X, 
-  ChevronUp, 
-  Play, 
-  Image as ImageIcon, 
-  BookOpen, 
-  Settings, 
+import {
+  Menu,
+  X,
+  ChevronUp,
+  Play,
+  Image as ImageIcon,
+  BookOpen,
+  Settings,
   Award,
   ExternalLink,
-  Activity, 
-  Truck, 
-  Cpu, 
-  Navigation, 
-  ShieldAlert, 
-  Home, 
-  Scissors, 
-  Sprout, 
-  Printer, 
+  Activity,
+  Truck,
+  Cpu,
+  Navigation,
+  ShieldAlert,
+  Home,
+  Scissors,
+  Sprout,
+  Printer,
   User
 } from 'lucide-react';
 import { mechatronicsApplications, bibliographyList } from './data/applications';
@@ -151,16 +151,16 @@ function InteractiveParticles() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
-    
+
     let animationFrameId;
     let particles = [];
     const particleCount = 40;
-    
+
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     };
-    
+
     window.addEventListener('resize', handleResize);
     handleResize();
 
@@ -173,18 +173,18 @@ function InteractiveParticles() {
         this.speedY = Math.random() * 0.4 - 0.2;
         this.color = Math.random() > 0.5 ? 'rgba(99, 102, 241, 0.12)' : 'rgba(13, 148, 136, 0.12)';
       }
-      
+
       update() {
         this.x += this.speedX;
         this.y += this.speedY;
-        
+
         if (this.x > canvas.width) this.x = 0;
         else if (this.x < 0) this.x = canvas.width;
-        
+
         if (this.y > canvas.height) this.y = 0;
         else if (this.y < 0) this.y = canvas.height;
       }
-      
+
       draw() {
         ctx.fillStyle = this.color;
         ctx.beginPath();
@@ -199,14 +199,14 @@ function InteractiveParticles() {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
+
       // Draw lines between close particles
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          
+
           if (dist < 120) {
             ctx.strokeStyle = `rgba(99, 102, 241, ${0.05 * (1 - dist / 120)})`;
             ctx.lineWidth = 0.8;
@@ -222,10 +222,10 @@ function InteractiveParticles() {
         p.update();
         p.draw();
       });
-      
+
       animationFrameId = requestAnimationFrame(animate);
     };
-    
+
     animate();
 
     return () => {
@@ -311,7 +311,7 @@ export default function App() {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
       const percent = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
       setScrollPercent(percent);
-      
+
       setShowScrollTop(scrollTop > 400);
 
       const sections = ['portada', 'introduccion', 'aplicaciones', 'bibliografia'];
@@ -574,7 +574,7 @@ export default function App() {
 
   return (
     <div className="app-viewport">
-      
+
       {/* Interactive Background Particles */}
       <InteractiveParticles />
 
@@ -588,7 +588,7 @@ export default function App() {
           <span className="logo-text">Mecatrónica</span>
         </div>
 
-        <button 
+        <button
           className="mobile-nav-toggle"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle Menu"
@@ -607,7 +607,7 @@ export default function App() {
 
       {/* Main Hub Container */}
       <main className="hub-container">
-        
+
         {/* SECTION 1: PORTADA — Split Screen Hero */}
         <section id="portada">
           <ScrollReveal className="hero-split-panel glass-panel">
@@ -616,9 +616,9 @@ export default function App() {
             {/* Left: Text content */}
             <div className="hero-left">
               <div className="hero-badges">
-                <img 
-                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Escudo_de_la_Universidad_de_Colima.svg/240px-Escudo_de_la_Universidad_de_Colima.svg.png" 
-                  alt="Escudo Universidad de Colima" 
+                <img
+                  src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Escudo_de_la_Universidad_de_Colima.svg/240px-Escudo_de_la_Universidad_de_Colima.svg.png"
+                  alt="Escudo Universidad de Colima"
                   className="hero-badge-logo"
                   onError={(e) => { e.target.style.display = 'none'; }}
                 />
@@ -633,7 +633,7 @@ export default function App() {
 
               <p className="hero-institution">Universidad de Colima</p>
               <p className="hero-faculty">Facultad de Ingeniería Electromecánica (FIE)</p>
-              
+
               <h1 className="hero-title">Aplicaciones de la Mecatrónica</h1>
               <p className="hero-subtitle">
                 Un Hub interactivo y modular que explora la sinergia e interconexión práctica entre la mecánica, la electrónica, los sistemas de control y la programación.
@@ -679,10 +679,10 @@ export default function App() {
                 <span className="section-tag">Fundamentación</span>
                 <h2>Sinergia Multidisciplinaria</h2>
                 <p>
-                  La mecatrónica representa una <strong>filosofía ingenieril integradora</strong> en la que la mecánica, la electrónica, los sistemas de control y el desarrollo de software se unen de forma simultánea. 
+                  La mecatrónica representa una <strong>filosofía ingenieril integradora</strong> en la que la mecánica, la electrónica, los sistemas de control y el desarrollo de software se unen de forma simultánea.
                 </p>
                 <p style={{ marginTop: '12px' }}>
-                  <strong>Hacé clic en las áreas del diagrama</strong> para descubrir cómo aporta cada pilar al desarrollo de estas tecnologías.
+                  <strong>Haz clic en las áreas del diagrama</strong> para descubrir cómo aporta cada pilar al desarrollo de estas tecnologías.
                 </p>
 
                 {/* Venn concept info panel — inline on left side */}
@@ -735,7 +735,7 @@ export default function App() {
                 <span className="app-card-big-number" aria-hidden="true">
                   {String(app.id).padStart(2, '0')}
                 </span>
-                
+
                 {/* Info and pillars */}
                 <div className="app-card-top">
                   <div className="app-card-info">
@@ -769,7 +769,7 @@ export default function App() {
 
                 {/* Media block — figure and video */}
                 <div className="app-card-media-grid">
-                  
+
                   {/* Technical Figure */}
                   <div className="media-block figure-block">
                     <span className="media-block-title">
@@ -793,7 +793,7 @@ export default function App() {
                       <span>Video Demostrativo (Máx. 3m)</span>
                     </span>
                     <div className="media-display-box">
-                      <iframe 
+                      <iframe
                         className="yt-iframe-wrap"
                         src={`https://www.youtube.com/embed/${app.youtubeId}?autoplay=0&rel=0`}
                         title={`Demostración de ${app.title}`}
@@ -830,11 +830,11 @@ export default function App() {
                     <p className="biblio-citation">
                       <strong>{bib.author}</strong> <em>{bib.title}</em> {bib.publisher}
                     </p>
-                    <a 
-                      href={bib.url} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="biblio-link-btn" 
+                    <a
+                      href={bib.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="biblio-link-btn"
                       title="Acceder al recurso académico"
                     >
                       <ExternalLink size={13} />
@@ -851,7 +851,7 @@ export default function App() {
 
       {/* Floating Back to Top Button */}
       {showScrollTop && (
-        <button 
+        <button
           className="back-to-top-btn"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Volver al inicio"
@@ -863,9 +863,9 @@ export default function App() {
       {/* Footer Bar */}
       <footer className="footer-bar">
         <div style={{ display: 'flex', justifyContent: 'center', gap: '20px', marginBottom: '16px', opacity: 0.7 }}>
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Escudo_de_la_Universidad_de_Colima.svg/240px-Escudo_de_la_Universidad_de_Colima.svg.png" 
-            alt="UCOL" 
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Escudo_de_la_Universidad_de_Colima.svg/240px-Escudo_de_la_Universidad_de_Colima.svg.png"
+            alt="UCOL"
             style={{ height: '36px', objectFit: 'contain' }}
             onError={(e) => { e.target.style.display = 'none'; }}
           />
